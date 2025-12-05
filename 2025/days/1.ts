@@ -14,9 +14,19 @@ try {
 	console.log(lines);
 	for (const line of lines) {
 		if (line.startsWith('R')) {
-			currentPosition = (currentPosition + (Number(line.slice(1)))) % maxPosition;
+			// currentPosition = (currentPosition + (Number(line.slice(1)))) % maxPosition;
+			currentPosition += (Number(line.slice(1)));
+			while (currentPosition >= maxPosition) {
+				currentPosition -= maxPosition;
+				numberOfZeros++;
+			}
 		} else if (line.startsWith('L')) {
-			currentPosition = (currentPosition - (Number(line.slice(1)))) % maxPosition;
+			// currentPosition = (currentPosition - (Number(line.slice(1)))) % maxPosition;
+			currentPosition -= (Number(line.slice(1)));
+			while (currentPosition < minPosition) {
+				currentPosition += maxPosition;
+				numberOfZeros++;
+			}
 		}
 
 		console.log(currentPosition);
